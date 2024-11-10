@@ -6,8 +6,9 @@ import "contracts/SimpleStorage.sol";
 
 contract StorageFactory {
 
-    FirstContract public firstContract;
+    FirstContract[] public listOfFirstContracts; //list of all the different FirstContracts that are runned
     function createStorageFactory() public {
-        firstContract = new FirstContract();
+        FirstContract newFirstContract = new FirstContract(); //creation of new newFirstContract
+        listOfFirstContracts.push(newFirstContract);
     }
 }

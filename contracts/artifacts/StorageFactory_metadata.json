@@ -13,8 +13,14 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "firstContract",
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listOfFirstContracts",
 				"outputs": [
 					{
 						"internalType": "contract FirstContract",
@@ -62,11 +68,11 @@
 			]
 		},
 		"contracts/StorageFactory.sol": {
-			"keccak256": "0x5cdec947b0b935bedfbf330ac368057c2cdf0d5dfeb27c3a3ae8cb767a0494c0",
+			"keccak256": "0xf9648a5ae827ab911a63074234056664ec3f8b9d37dd29de4c483a606210bdad",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2b7d1aa102e95bdd442cd8afc689d0aaa91a1c5f19a8bab7c69b5c63c160eec3",
-				"dweb:/ipfs/QmTKPPhfFY2tobvTBc3bHzk1cXdrEwopm5wmfK6hPTHAM1"
+				"bzz-raw://f32b50ebe74b65d6cbb18a70c1480a82f647c1049f79c26d6d181b19ef2a2e2f",
+				"dweb:/ipfs/QmYA6ThK1GbmhxS6JMiKLSGNvp3riQFeTRMsJ1K6GYj9L8"
 			]
 		}
 	},
