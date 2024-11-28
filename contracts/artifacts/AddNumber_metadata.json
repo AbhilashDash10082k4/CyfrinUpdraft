@@ -1,0 +1,159 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "ad",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "genericFavouriteNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_genericFavouriteNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "addPersons",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listOfPersons",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "genericFavouriteNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "nameToFavouriteNumber",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "retrieve",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newNumber",
+						"type": "uint256"
+					}
+				],
+				"name": "update",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/AddNumber.sol": "AddNumber"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/AddNumber.sol": {
+			"keccak256": "0x099983852296d812d5031eef1a0a81dcf546199f9b8a608798f0c9cd70c2828e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a5adf9619dd6991a03d9f1d96d0c63e4bca4b9432776168ec50469b68efca06e",
+				"dweb:/ipfs/QmXuWnZtay5UJNWE8eXnz9L5UUBr9PBJNxDvjT7A6yCbXX"
+			]
+		},
+		"contracts/SimpleStorage.sol": {
+			"keccak256": "0x3e7c067c029fd920bcc983f9e7f8a30a93527bb112589e58d07b51752b386696",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f39d25634a04447ab39a6eadf1fc6141dcbd1683c0578006231cadb60cd1a6c9",
+				"dweb:/ipfs/QmSKmkLp4ZX1iF7GXrHsUmBa6A3GxTPLcGYpmLdXVmfTmM"
+			]
+		}
+	},
+	"version": 1
+}
