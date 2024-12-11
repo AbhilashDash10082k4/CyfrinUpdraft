@@ -73,7 +73,41 @@ contract FundMe {
             so to have a random no. chainlink vrf is used
         */
         funders.push(msg.sender); /*msg.sender refers to the sender sending ETH*/
-        addressToAmountFunded[msg.sender] = addressToAmountFunded[msg.sender] + msg.value;
+        //update the value sent by the users
+        addressToAmountFunded[msg.sender] += msg.value;
+    }
+
+    //withdraw funds sent to us
+    /*to withdraw the money, the mapping(address funder => uint256 amountFunded) public addressToAmountFunded are set to 0
+    showing that the amounts are withdrawn*/
+    function withdraw() public  {
+        for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
+            address funder = funders[funderIndex];
+            addressToAmountFunded[funder] = 0;
+        }
+        //resetting the array by creating a new funders array
+        funders = new address[](0);
+        //actually withdrawing the funds
+        /* 3diff ways of sending ETH or any native token-
+        1.transfer
+        2.send
+        3.call*/
+        /*transfering-  type (msg.sender) = address, type (payable(msg.sender)) = payable address,
+        uses 2300 gas and if more gas is used then it throws error
+        address(this).balance = is the balance of the contract, 'this' refers to the entire SC
+        */
+        payable (msg.sender).transfer(address(this).balance);
+
+        //send, uses 2300gas and returns a bool whether or not successful
+        bool sendSuccess = payable(msg.sender).send(address(this).balance);
+        require(sendSuccess, "Send failed"); //if the send failed ,the txn reverts with a msg
+
+        /*call- a lower lvl command, it is a fn which can be called to send a txn,
+        it returns 2 vars- callSuccess and dataReturned but only callSuccess is imp*/
+        (bool callSuccess, ) = payable (msg.sender).call{value: address(this).balance}("");
+        require(callSuccess, "Call failed"); /*this line means we require callSucces to be true else revert with the msg call failed
+        */
+        
     }
 
 }

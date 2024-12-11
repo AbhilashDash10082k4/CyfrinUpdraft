@@ -34,9 +34,6 @@ library PriceConverterLibrary {
         return ethAmountInUsd;
     }
 
-    //withdraw funds sent to us
-    function withdraw() internal {}
-
     //using that AggregatorV3interface
     /*This function calls the Chainlink price feed contract at address
     0x694AA1769357215DE4FAC081bf1f309aDC325306 to get the version 
