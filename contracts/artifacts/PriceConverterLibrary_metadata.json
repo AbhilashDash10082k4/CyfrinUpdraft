@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/PriceConverterLibrary.sol": "PriceConverterLibrary"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/PriceConverterLibrary.sol": {
+			"keccak256": "0x97745df9bd669026790e2f19cc11760a0d41ca0a014842513aeb4f7293cdc5b4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7ec0453d2b0ae66cf98c3fdc8473f24f85f86c1f55230e1643ce69885d14f88f",
+				"dweb:/ipfs/QmWLb71QMksmQN7iFBbutzhYRYEzsWdYV8h2X63xz89cZF"
+			]
+		}
+	},
+	"version": 1
+}
