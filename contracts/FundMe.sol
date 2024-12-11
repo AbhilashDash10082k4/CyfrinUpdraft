@@ -42,6 +42,12 @@ contract FundMe {
     /*mapping Mount of money each user has sent*/
     mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
 
+    /*fn to set us the owner of the contract as soon as the contract is deployed*/
+    address public owner;
+    constructor () {
+        owner = msg.sender;
+    }
+
     //recieve funds from user to our contracts, user will call this func to send money to our contract
     function fund() public payable {
         //Allow users to send money above a min val
@@ -79,8 +85,15 @@ contract FundMe {
 
     //withdraw funds sent to us
     /*to withdraw the money, the mapping(address funder => uint256 amountFunded) public addressToAmountFunded are set to 0
-    showing that the amounts are withdrawn*/
+    showing that the amounts are withdrawn
+    
+    this fn is available to public and needs to be secured so that no one else can withdraw the money that 
+    belongs to owner of the contract*/
     function withdraw() public  {
+
+        //enables only the owner to withdraw
+        require(msg.sender == owner);
+
         for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0;
@@ -107,7 +120,7 @@ contract FundMe {
         (bool callSuccess, ) = payable (msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed"); /*this line means we require callSucces to be true else revert with the msg call failed
         */
-        
+
     }
 
 }
