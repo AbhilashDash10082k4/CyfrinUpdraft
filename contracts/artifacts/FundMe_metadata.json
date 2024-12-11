@@ -51,51 +51,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "ethAmount",
-						"type": "uint256"
-					}
-				],
-				"name": "getConversionRate",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getVersion",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "minUSD",
 				"outputs": [
@@ -106,13 +61,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "withdraw",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -152,11 +100,19 @@
 			]
 		},
 		"contracts/FundMe.sol": {
-			"keccak256": "0x3464847da4d44da50eda8ecc41eea6e29d42feb28ab0ae08c29f5d5103a39324",
+			"keccak256": "0xf69d3c3eadac0d8625ac2ad874e73c59f2c66abe421cb020e2b787dfd574bb78",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b2f8d9a772b8a53e261a7a95b4b23111b897d60cdf5457b5cc6107defdfa3b56",
-				"dweb:/ipfs/QmVWKsvNB3QErAR1cGtDvBChu2sjtH8aGGPjpU4aQaX9qr"
+				"bzz-raw://99d063ea0d1660e154e7a956ff3ed8aa8781a9b09b5a67ab838bc87628851b8b",
+				"dweb:/ipfs/QmY45LRTbSnn1KkcSueR6H8YqjsrYeUYXGLrHBfVmU7W9J"
+			]
+		},
+		"contracts/PriceConverterLibrary.sol": {
+			"keccak256": "0xf8d8b812329508ac637a3e373d749780dc1ff0e2c4360807456bcffa942b8a71",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ac9032ff458e4a6393093f6b150533dd0007af3bd0959f84ebfb378dc72a4e79",
+				"dweb:/ipfs/QmcpM5pi5AV1Uiu7oD8BozzPbhVpnj3AH6b83Go4L7AGP6"
 			]
 		}
 	},

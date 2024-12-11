@@ -24,11 +24,13 @@ pragma solidity ^0.8.18;
 //     view
 //     returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
 // }
-
-//impporting this entire interface
-import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+//importing the library
+import {PriceConverterLibrary} from "./PriceConverterLibrary.sol";
 
 contract FundMe {
+
+    //attaching the library to all uint256 var
+    using PriceConverterLibrary for uint256;
 
     //converting usd to dollars
     /*as the getConversionRate returns a no with 18 decimal places so,7*1e18*/
@@ -53,7 +55,8 @@ contract FundMe {
         //require - min requirement, msg.val = val of wei sent, 1e18 = 1ETH == 1 * 10**18 WEI
         
         /*getConversionRate will convert the ETH into USD*/
-        require(getConversionRate(msg.value) > minUSD, "Why so Kanjus! Send the entire amount specified");
+        /*getConversionRate is of uint256 and so is msg.value, so msg.value will get passed in to getConversionRate*/
+        require(msg.value.getConversionRate() > minUSD, "Why so Kanjus! Send the entire amount specified");
         
         //msg.value is in WEI and minUSD is in USD, so convert WEI to USD
         /*using ORACLE
@@ -71,47 +74,6 @@ contract FundMe {
         */
         funders.push(msg.sender); /*msg.sender refers to the sender sending ETH*/
         addressToAmountFunded[msg.sender] = addressToAmountFunded[msg.sender] + msg.value;
-    }
-
-    //to get the val of 1ETH in USD
-    function getPrice() public view returns (uint256) {
-        //ABI
-        //ADRESS for conversion- 0x694AA1769357215DE4FAC081bf1f309aDC325306
-        /*compiling the interface of chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol will give the abi
-        */
-        /*Getting real world price data from chainlink*/
-        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
-        /*calling latestRoundData fn on pricefeed*/
-        (,int256 answer,,,) = priceFeed.latestRoundData();
-        /*Price = price of ETH in USD*/
-        return uint256(answer*1e10);
-    }
-
-    //to conv msg.value to from ETH to USD
-    function getConversionRate(uint256 ethAmount) public view returns (uint256) {
-        //ethAmount - amount of ETH to be converted
-        uint256 ethPrice = getPrice(); //1ETH IN USD
-        //1ETH = 10**18 WEI
-        /*Let 1ETH = 1000USD (IRL it will look like 10**18ETH = 1000_0000000000USD)
-        the decimal places are taken into consideration as whole nos, so 1e18 is divided
-        to cancel out the extra set of 18 0's*/
-        uint ethAmountInUsd = ethPrice*ethAmount / 1e18; /*(USD * ETH)/1e18 */
-        return ethAmountInUsd;
-    }
-
-    //withdraw funds sent to us
-    function withdraw() public {}
-
-    //using that AggregatorV3interface
-    /*This function calls the Chainlink price feed contract at address
-    0x694AA1769357215DE4FAC081bf1f309aDC325306 to get the version 
-    of the price feed by interacting with its version() function,
-    which is defined in the AggregatorV3Interface
-    */
-    function getVersion() public view returns (uint256) {
-        //address is passed to AggregatorV3Interafce
-        //the below line tells that this address has a version fn
-        return AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306).version();
     }
 
 }
