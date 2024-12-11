@@ -89,10 +89,7 @@ contract FundMe {
     
     this fn is available to public and needs to be secured so that no one else can withdraw the money that 
     belongs to owner of the contract*/
-    function withdraw() public  {
-
-        //enables only the owner to withdraw
-        require(msg.sender == owner);
+    function withdraw() public onlyOwner {
 
         for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
             address funder = funders[funderIndex];
@@ -121,6 +118,13 @@ contract FundMe {
         require(callSuccess, "Call failed"); /*this line means we require callSucces to be true else revert with the msg call failed
         */
 
+    }
+    
+    //fn modifier- used as a keyword to customize any fn needed
+    modifier onlyOwner() {
+        //enables only the owner to withdraw
+        require(msg.sender == owner, "Sender needs to be owner");
+        _; //execute the fn with which this keyword is attached
     }
 
 }
