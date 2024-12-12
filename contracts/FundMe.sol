@@ -27,14 +27,18 @@ pragma solidity ^0.8.18;
 //importing the library
 import {PriceConverterLibrary} from "./PriceConverterLibrary.sol";
 
+//custom err for gas efficiency
+error NotOwner();
+
 contract FundMe {
 
     //attaching the library to all uint256 var
     using PriceConverterLibrary for uint256;
 
     //converting usd to dollars
-    /*as the getConversionRate returns a no with 18 decimal places so,7*1e18*/
-    uint256 public minUSD = 7e18;
+    /*as the getConversionRate returns a no with 18 decimal places so,7*1e18
+    constant reduces gas cost, */
+    uint256 public constant MIN_USD = 7e18;
 
     /*tracking users who are sending money*/
     address[] public funders;
@@ -42,10 +46,11 @@ contract FundMe {
     /*mapping Mount of money each user has sent*/
     mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
 
-    /*fn to set us the owner of the contract as soon as the contract is deployed*/
-    address public owner;
+    /*fn to set us the i_owner of the contract as soon as the contract is deployed
+    immutable- reduces gas cost*/
+    address public immutable i_owner;
     constructor () {
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
 
     //recieve funds from user to our contracts, user will call this func to send money to our contract
@@ -62,9 +67,9 @@ contract FundMe {
         
         /*getConversionRate will convert the ETH into USD*/
         /*getConversionRate is of uint256 and so is msg.value, so msg.value will get passed in to getConversionRate*/
-        require(msg.value.getConversionRate() > minUSD, "Why so Kanjus! Send the entire amount specified");
+        require(msg.value.getConversionRate() > MIN_USD, "Why so Kanjus! Send the entire amount specified");
         
-        //msg.value is in WEI and minUSD is in USD, so convert WEI to USD
+        //msg.value is in WEI and MIN_USD is in USD, so convert WEI to USD
         /*using ORACLE
         ORACLE PRBLM = blockchains are unable to interact with outside world
         bchains are deterministic system so that all the nodes can reach consensus
@@ -88,8 +93,8 @@ contract FundMe {
     showing that the amounts are withdrawn
     
     this fn is available to public and needs to be secured so that no one else can withdraw the money that 
-    belongs to owner of the contract*/
-    function withdraw() public onlyOwner {
+    belongs to i_owner of the contract*/
+    function withdraw() public onlyi_Owner {
 
         for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
             address funder = funders[funderIndex];
@@ -121,9 +126,12 @@ contract FundMe {
     }
     
     //fn modifier- used as a keyword to customize any fn needed
-    modifier onlyOwner() {
-        //enables only the owner to withdraw
-        require(msg.sender == owner, "Sender needs to be owner");
+    modifier onlyi_Owner() {
+        //enables only the i_owner to withdraw
+        // require(msg.sender == i_owner, "Sender needs to be i_owner");
+
+        //custom error-
+        if (msg.sender != i_owner) { revert NotOwner(); }
         _; //execute the fn with which this keyword is attached
     }
 
