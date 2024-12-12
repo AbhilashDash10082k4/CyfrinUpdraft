@@ -134,5 +134,17 @@ contract FundMe {
         if (msg.sender != i_owner) { revert NotOwner(); }
         _; //execute the fn with which this keyword is attached
     }
+    /*What will happen if a sender sends ETH without calling the fund fn?- 
+    triggering some code while user send native tokens or call a fn
+    
+    recieve(), fallback()*/
+
+    /*if user sends ETH or a txn without calling the fund fn, it will redirect them towards the fund fn*/
+    receive() external  payable  {
+        fund();
+    }
+    fallback() external  payable  {
+        fund();
+    }
 
 }
